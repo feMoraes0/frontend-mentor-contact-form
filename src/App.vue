@@ -4,39 +4,64 @@
     <form action="" class="form">
       <fieldset class="form__fieldset form__fieldset--name">
         <div>
-          <label for="first-name-input">First Name <span>*</span></label>
-          <input id="first-name-input" name="first-name-input" type="text" />
+          <label for="first-name-input">First Name </label>
+          <input
+            id="first-name-input"
+            name="first-name-input"
+            type="text"
+            required
+          />
         </div>
         <div>
-          <label for="last-name-input">Last Name <span>*</span></label>
-          <input id="last-name-input" name="last-name-input" type="text" />
+          <label for="last-name-input">Last Name </label>
+          <input
+            id="last-name-input"
+            name="last-name-input"
+            type="text"
+            required
+          />
         </div>
       </fieldset>
       <fieldset class="form__fieldset">
-        <label for="email-input">Email Address <span>*</span></label>
-        <input id="email-input" name="email-input" type="email" />
+        <label for="email-input">Email Address </label>
+        <input id="email-input" name="email-input" type="email" required />
       </fieldset>
       <fieldset class="form__fieldset form__fieldset--query">
-        <label>Query Type <span>*</span></label>
+        <label>Query Type </label>
         <div>
           <div class="form__fieldset--query__input">
-            <input id="query-input" type="checkbox" />
+            <input
+              id="query-input-general"
+              name="query-input"
+              type="checkbox"
+              required
+            />
             <label for="query-input-general">General Enquiry</label>
           </div>
           <div class="form__fieldset--query__input">
-            <input name="query-input" type="checkbox" />
-            <label for="query-input-general">General Enquiry</label>
+            <input
+              id="query-input-support"
+              name="query-input"
+              type="checkbox"
+              required
+            />
+            <label for="query-input-support">Support Request</label>
           </div>
         </div>
       </fieldset>
       <fieldset class="form__fieldset">
-        <label for="message-input">Message <span>*</span></label>
-        <textarea id="message-input" name="message-input"></textarea>
+        <label for="message-input">Message </label>
+        <textarea id="message-input" name="message-input" required></textarea>
       </fieldset>
       <fieldset class="form__fieldset--consent">
-        <input type="checkbox" name="consent-input" id="consent-input" />
+        <input
+          type="checkbox"
+          name="consent-input"
+          id="consent-input"
+          required
+        />
         <label for="consent-input">
-          I consent to being contacted by the team <span>*</span>
+          I consent to being contacted by the team
         </label>
       </fieldset>
       <button type="submit">Submit</button>
@@ -138,7 +163,8 @@ main {
           letter-spacing: 0;
           font-weight: 400;
 
-          span {
+          &::after {
+            content: "*";
             color: var(--green-600);
           }
         }
@@ -151,7 +177,8 @@ main {
         letter-spacing: 0;
         font-weight: 400;
 
-        span {
+        &::after {
+          content: "*";
           color: var(--green-600);
         }
       }
