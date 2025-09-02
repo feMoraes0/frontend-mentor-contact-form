@@ -28,7 +28,7 @@
       </fieldset>
       <fieldset class="form__fieldset form__fieldset--query">
         <label>Query Type </label>
-        <div>
+        <div class="form__fieldset--query__options">
           <div class="form__fieldset--query__input">
             <input
               id="query-input-general"
@@ -76,6 +76,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+$min-tablet-width: 768px;
+$min-desktop-width: 1440px;
+
 main {
   padding: 24px;
   background-color: var(--white);
@@ -220,6 +223,46 @@ main {
       font-size: 18px;
       letter-spacing: 0;
     }
+  }
+}
+
+@media (width >= $min-tablet-width) {
+  main {
+    width: 690px;
+    align-self: center;
+    justify-self: center;
+    margin: 0;
+    padding: 40px;
+
+    .form {
+      &__fieldset {
+        &--name {
+          flex-direction: row;
+        }
+
+        &--query {
+          &__options {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 16px;
+          }
+
+          &__input {
+            flex: 1;
+            &:first-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (width >= $min-desktop-width) {
+  main {
+    width: 736px;
   }
 }
 </style>
