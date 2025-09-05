@@ -1,4 +1,4 @@
-import { fireEvent, logRoles, render, screen } from "@testing-library/vue";
+import { fireEvent, render, screen } from "@testing-library/vue";
 import { describe, expect, it } from "vitest";
 import CheckboxAtom from "../../src/atoms/CheckboxAtom.vue";
 
