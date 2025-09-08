@@ -7,9 +7,6 @@
     :required="required"
     :onchange="onChange"
   />
-  <p role="error-message" v-if="hasError">
-    {{ errorMessage }}
-  </p>
 </template>
 
 <script setup lang="ts">
@@ -20,7 +17,6 @@ withDefaults(
     type?: "text" | "email";
     required?: boolean;
     hasError?: boolean;
-    errorMessage?: string;
   }>(),
   {
     required: false,
@@ -64,14 +60,6 @@ input {
 
   &:hover {
     border-color: var(--green-600);
-  }
-
-  & + p {
-    color: var(--error-red);
-    font-size: 16px;
-    font-weight: 400;
-    letter-spacing: 0;
-    line-height: 150%;
   }
 }
 </style>

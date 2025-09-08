@@ -12,8 +12,6 @@ describe("Given the Text Input Atom component", () => {
     expect(input).toHaveProperty("type", "text");
     expect(input).toHaveProperty("required", false);
     expect(input).toHaveProperty("id", "");
-    const errorMessage = screen.queryByRole("error-message");
-    expect(errorMessage).toBeNull();
   });
 
   it("When all props are passed, then should have defined properties following props", () => {
@@ -24,7 +22,6 @@ describe("Given the Text Input Atom component", () => {
         type: "email",
         required: true,
         hasError: true,
-        errorMessage: "any_error_message",
       },
     });
     const input = screen.getByRole("textbox");
@@ -32,8 +29,6 @@ describe("Given the Text Input Atom component", () => {
     expect(input).toHaveProperty("type", "email");
     expect(input).toHaveProperty("required", true);
     expect(input).toHaveProperty("id", "any_id");
-    const errorMessage = screen.getByRole("error-message");
-    expect(errorMessage.textContent).toBe("any_error_message");
   });
 
   it("When a text is typed, then should emit onChange with typed input as parameter", async () => {
