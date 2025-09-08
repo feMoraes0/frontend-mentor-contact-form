@@ -1,10 +1,10 @@
 <template>
   <textarea
+    :class="{ error: hasError }"
     :id="id"
     :name="name"
-    :required="required"
     :onchange="onChange"
-  ></textarea>
+  />
 </template>
 
 <script setup lang="ts">
@@ -12,10 +12,10 @@ withDefaults(
   defineProps<{
     id: string;
     name: string;
-    required?: boolean;
+    hasError?: boolean;
   }>(),
   {
-    required: false,
+    hasError: false,
   },
 );
 
@@ -45,6 +45,10 @@ textarea {
   cursor: pointer;
   resize: none;
   min-height: 295px;
+
+  &.error {
+    border-color: var(--error-red);
+  }
 
   &:hover {
     border-color: var(--green-600);

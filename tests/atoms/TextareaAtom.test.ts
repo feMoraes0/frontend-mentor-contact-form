@@ -13,7 +13,6 @@ describe("Given the Textarea Atom component", () => {
     const textarea = screen.getByRole("textbox");
     expect(textarea).toHaveProperty("id", "any_id");
     expect(textarea).toHaveProperty("name", "any_name");
-    expect(textarea).toHaveProperty("required", false);
   });
 
   it("When allprops are passed, then should validate properties", () => {
@@ -21,13 +20,11 @@ describe("Given the Textarea Atom component", () => {
       props: {
         id: "any_id",
         name: "any_name",
-        required: true,
       },
     });
     const textarea = screen.getByRole("textbox");
     expect(textarea).toHaveProperty("id", "any_id");
     expect(textarea).toHaveProperty("name", "any_name");
-    expect(textarea).toHaveProperty("required", true);
   });
 
   it("When value is changed, then should emit onChange event with input value", async () => {
