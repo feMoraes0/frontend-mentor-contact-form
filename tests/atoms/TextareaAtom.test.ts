@@ -27,16 +27,17 @@ describe("Given the Textarea Atom component", () => {
     expect(textarea).toHaveProperty("name", "any_name");
   });
 
-  it("When value is changed, then should emit onChange event with input value", async () => {
+  it("When value is inputted, then should emit input event with input value", async () => {
+    const entry = "any_value";
     const { emitted } = render(TextareaAtom, {
       props: {
         id: "any_id",
         name: "any_name",
       },
     });
-    const textarea = screen.getByRole("textbox");
-    expect(emitted()).not.toHaveProperty("onChange");
-    await fireEvent.change(textarea, { target: { value: "any_value" } });
-    expect(emitted()).toHaveProperty("onChange", [["any_value"]]);
+    const textarea = screen.getByRole("textbox") as HTMLTextAreaElement;
+    expect(emitted()).not.toHaveProperty("input");
+    await fireEvent.update(textarea, entry);
+    expect(emitted()).toHaveProperty("input", [[entry]]);
   });
 });

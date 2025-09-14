@@ -3,7 +3,7 @@
     :class="{ error: hasError }"
     :id="id"
     :name="name"
-    :onchange="onChange"
+    :oninput="onInput"
   />
 </template>
 
@@ -20,12 +20,12 @@ withDefaults(
 );
 
 const emit = defineEmits<{
-  (e: "onChange", text: string): void;
+  (e: "input", text: string): void;
 }>();
 
-function onChange(event: { target: { value: string } }) {
+function onInput(event: { target: { value: string } }) {
   const { value } = event.target;
-  emit("onChange", value);
+  emit("input", value);
 }
 </script>
 
