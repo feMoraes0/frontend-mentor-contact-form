@@ -15,35 +15,31 @@ describe("Given the Email Field Molecule component", () => {
     expect(input).toHaveProperty("id", "email-input");
     expect(input).toHaveProperty("name", "email-input");
     expect(input).toHaveProperty("type", "email");
-    expect(input).toHaveProperty("required", true);
   });
 
-  it("When an empty email is typed, then should not emit onInput and show error message", async () => {
-    const { emitted } = render(EmailFieldMolecule);
-    const input = screen.getByRole("textbox");
-    await fireEvent.change(input, { target: { value: "" } });
-    expect(emitted().onInput).toBeUndefined();
-    const errorMessage = screen.getByRole("error-message");
-    expect(errorMessage.textContent).toBe("Please enter a valid email address");
-  });
-
-  it("When an invalid email is typed, then should not emit onInput and show error message", async () => {
-    const { emitted } = render(EmailFieldMolecule);
-    const input = screen.getByRole("textbox");
-    await fireEvent.change(input, { target: { value: "any_invalid_email" } });
-    expect(emitted().onInput).toBeUndefined();
-    const errorMessage = screen.getByRole("error-message");
-    expect(errorMessage.textContent).toBe("Please enter a valid email address");
-  });
-
-  it("When a valid email is typed, then should emit onInput and not show error message", async () => {
-    const { emitted } = render(EmailFieldMolecule);
-    const input = screen.getByRole("textbox");
-    await fireEvent.change(input, {
-      target: { value: "any_invalid_email@email.com" },
+  it("When props is passed as true, then should find error message", () => {
+    render(EmailFieldMolecule, {
+      props: { hasError: true },
     });
-    expect(emitted().onInput).toEqual([["any_invalid_email@email.com"]]);
-    const errorMessage = screen.queryByRole("error-message");
-    expect(errorMessage).toBeNull();
+    const errorMessage = screen.queryByText(
+      /please enter a valid email address/i,
+    );
+    expect(errorMessage).not.toBeNull();
+  });
+
+  it("When an empty email is typed, then should emit change event with an empty string", async () => {
+    const entry = "";
+    const { emitted } = render(EmailFieldMolecule);
+    const input = screen.getByRole("textbox") as HTMLInputElement;
+    await fireEvent.update(input, entry);
+    expect(emitted().input).toEqual([[entry]]);
+  });
+
+  it("When an entry is typed, then should emit change event with the inputted string", async () => {
+    const entry = "any_entry";
+    const { emitted } = render(EmailFieldMolecule);
+    const input = screen.getByRole("textbox") as HTMLInputElement;
+    await fireEvent.update(input, entry);
+    expect(emitted().input).toEqual([[entry]]);
   });
 });
