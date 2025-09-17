@@ -7,5 +7,17 @@ export default defineConfig({
   test: {
     environment: "jsdom",
     globals: true,
+    coverage: {
+      exclude: ["*/**/main.ts", "*.config.*", "*/**/*.d.ts"],
+      thresholds: {
+        statements: 60,
+        functions: 100,
+        branches: 100,
+        lines: 60,
+      },
+    },
+    sequence: {
+      shuffle: true,
+    },
   },
 });
