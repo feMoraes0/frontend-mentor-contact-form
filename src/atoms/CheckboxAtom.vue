@@ -1,11 +1,11 @@
 <template>
-  <div role="input-box" :class="{ isActive: isActive }" :onclick="onClick">
+  <div role="input-box" :class="{ isActive: checked }" :onclick="onClick">
     <input
       type="checkbox"
       :id="id"
       :name="name"
       :required="required"
-      :checked="isActive"
+      :checked="checked"
       :onchange="onClick"
     />
     <label :for="id">{{ label }}</label>
@@ -13,28 +13,26 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-
 withDefaults(
   defineProps<{
     id: string;
     name: string;
     label: string;
     required?: boolean;
+    checked?: boolean;
   }>(),
   {
     required: false,
+    checked: false,
   },
 );
 const emit = defineEmits<{
-  (e: "onClick", isActive: boolean): void;
+  (e: "click"): void;
 }>();
 
-const isActive = ref(false);
-
-function onClick() {
-  isActive.value = !isActive.value;
-  emit("onClick", isActive.value);
+function onClick(event: { preventDefault: () => {} }) {
+  event.preventDefault();
+  emit("click");
 }
 </script>
 
