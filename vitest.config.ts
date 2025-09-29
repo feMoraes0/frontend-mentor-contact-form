@@ -8,7 +8,7 @@ export default defineConfig({
     environment: "jsdom",
     globals: true,
     coverage: {
-      exclude: ["*/**/main.ts", "*.config.*", "*/**/*.d.ts"],
+      exclude: ["*/**/main.ts", "*.config.*", "*/**/*.d.ts", "dist/*"],
       thresholds: {
         statements: 60,
         functions: 100,
