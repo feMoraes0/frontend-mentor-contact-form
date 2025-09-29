@@ -15,7 +15,7 @@ describe("Given the Consent Molecule component", () => {
     expect(label).toBeDefined();
   });
 
-  it("When label is clicked, then should checked be true and emit onClick event", async () => {
+  it("When label is clicked, then should checked be true and emit click event", async () => {
     const { emitted } = render(ConsentMolecule);
     const input = screen.getByRole("checkbox");
     const label = screen.getByText(/i consent to being contacted by the team/i);
@@ -23,16 +23,16 @@ describe("Given the Consent Molecule component", () => {
     expect(emitted()).toEqual({});
     await fireEvent.click(label);
     expect(input).toHaveProperty("checked", true);
-    expect(emitted()).toHaveProperty("onClick", [[true]]);
+    expect(emitted()).toHaveProperty("click", [[true]]);
   });
 
-  it("When input is clicked, then should checked be true and emit onClick event", async () => {
+  it("When input is clicked, then should checked be true and emit click event", async () => {
     const { emitted } = render(ConsentMolecule);
     const input = screen.getByRole("checkbox");
     expect(input).toHaveProperty("checked", false);
     expect(emitted()).toEqual({});
     await fireEvent.click(input);
     expect(input).toHaveProperty("checked", true);
-    expect(emitted()).toHaveProperty("onClick", [[true]]);
+    expect(emitted()).toHaveProperty("click", [[true]]);
   });
 });

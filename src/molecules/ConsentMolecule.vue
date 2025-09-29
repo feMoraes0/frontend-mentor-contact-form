@@ -21,12 +21,12 @@ import { ref } from "vue";
 const isChecked = ref(false);
 
 const emit = defineEmits<{
-  (e: "onClick", value: boolean): void;
+  (e: "click", value: boolean): void;
 }>();
 
 function onClick() {
   isChecked.value = !isChecked.value;
-  emit("onClick", isChecked.value);
+  emit("click", isChecked.value);
 }
 </script>
 
