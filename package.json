@@ -8,7 +8,9 @@
     "build": "vue-tsc -b && vite build",
     "preview": "vite preview",
     "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "prepare": "husky",
+    "pre-push": "npm run test:coverage && npm run build"
   },
   "dependencies": {
     "vue": "^3.5.18"
@@ -19,6 +21,7 @@
     "@vitest/coverage-v8": "^3.2.4",
     "@vue/test-utils": "^2.4.6",
     "@vue/tsconfig": "^0.7.0",
+    "husky": "^9.1.7",
     "jsdom": "^26.1.0",
     "sass-embedded": "^1.91.0",
     "typescript": "~5.8.3",
