@@ -21,9 +21,7 @@ import ErrorMessageAtom from "../atoms/ErrorMessageAtom.vue";
 
 withDefaults(defineProps<{ hasError?: boolean }>(), { hasError: false });
 const emit = defineEmits(["input"]);
-const onInput = (text: string) => {
-  emit("input", text);
-};
+const onInput = (text: string) => emit("input", text);
 </script>
 
 <style scoped lang="scss">
@@ -31,7 +29,6 @@ const onInput = (text: string) => {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 24px;
   border: none;
 }
 </style>

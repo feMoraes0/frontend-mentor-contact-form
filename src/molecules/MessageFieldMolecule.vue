@@ -20,9 +20,7 @@ import LabelAtom from "../atoms/LabelAtom.vue";
 
 withDefaults(defineProps<{ hasError?: boolean }>(), { hasError: false });
 const emit = defineEmits(["input"]);
-function onInput(text: string) {
-  emit("input", text);
-}
+const onInput = (text: string) => emit("input", text);
 </script>
 
 <style scoped lang="scss">
@@ -31,6 +29,5 @@ function onInput(text: string) {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 24px;
 }
 </style>

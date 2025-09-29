@@ -19,15 +19,13 @@ import LabelAtom from "../atoms/LabelAtom.vue";
 import { ref } from "vue";
 
 const isChecked = ref(false);
-
 const emit = defineEmits<{
   (e: "click", value: boolean): void;
 }>();
-
-function onClick() {
+const onClick = () => {
   isChecked.value = !isChecked.value;
   emit("click", isChecked.value);
-}
+};
 </script>
 
 <style scoped lang="scss">
@@ -38,8 +36,6 @@ fieldset {
   flex-direction: row;
   gap: 16px;
   justify-content: stretch;
-  margin-bottom: 40px;
-  margin-top: 16px;
   padding-right: 36px;
   user-select: none;
   width: fit-content;

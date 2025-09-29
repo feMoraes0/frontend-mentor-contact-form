@@ -49,42 +49,21 @@ $min-tablet-width: 768px;
   align-items: stretch;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
 
-  &__input {
-    padding: 12px 24px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: var(--grey-500);
-    border-radius: 8px;
+  &__options {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 12px;
-    cursor: pointer;
-
-    &:first-child {
-      margin-bottom: 16px;
-    }
-
-    label {
-      font-size: 18px;
-      line-height: 150%;
-      letter-spacing: 0;
-      font-weight: 400;
-      cursor: inherit;
-    }
+    flex-direction: column;
+    gap: 16px;
   }
 }
 
 @media (width >= $min-tablet-width) {
   .query {
     &__options {
-      display: flex;
       flex-direction: row;
       align-items: center;
       justify-items: stretch;
-      gap: 16px;
     }
 
     &__input {

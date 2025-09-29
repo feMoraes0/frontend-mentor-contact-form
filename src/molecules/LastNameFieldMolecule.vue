@@ -20,7 +20,5 @@ import TextInputAtom from "../atoms/TextInputAtom.vue";
 
 withDefaults(defineProps<{ hasError?: boolean }>(), { hasError: false });
 const emit = defineEmits(["input"]);
-function onInput(text: string) {
-  emit("input", text);
-}
+const onInput = (text: string) => emit("input", text);
 </script>
