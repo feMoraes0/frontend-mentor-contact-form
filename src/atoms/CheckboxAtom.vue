@@ -1,43 +1,36 @@
 <template>
-  <div role="input-box" :class="{ isActive: checked }" :onclick="onClick">
-    <input
-      type="checkbox"
-      :id="id"
-      :name="name"
-      :required="required"
-      :checked="checked"
-      :onchange="onClick"
+  <div
+    role="input-box"
+    :class="['input-box', { 'input-box--active': checked }]"
+    :onclick="onClick"
+  >
+    <div
+      role="checkbox"
+      :class="[
+        'input-box__selector',
+        { 'input-box__selector--active': checked },
+      ]"
     />
-    <label :for="id">{{ label }}</label>
+    <label>{{ label }}</label>
   </div>
 </template>
 
 <script setup lang="ts">
-withDefaults(
-  defineProps<{
-    id: string;
-    name: string;
-    label: string;
-    required?: boolean;
-    checked?: boolean;
-  }>(),
-  {
-    required: false,
-    checked: false,
-  },
-);
+defineProps<{
+  label: string;
+  checked?: boolean;
+}>();
 const emit = defineEmits<{
   (e: "click"): void;
 }>();
 
-function onClick(event: { preventDefault: () => {} }) {
-  event.preventDefault();
+function onClick() {
   emit("click");
 }
 </script>
 
 <style scoped lang="scss">
-div {
+.input-box {
   align-items: center;
   border-color: var(--grey-500);
   border-radius: 8px;
@@ -50,13 +43,36 @@ div {
   padding: 12px 24px;
   width: 100%;
 
-  &.isActive {
+  &--active {
     background-color: var(--green-200);
     border-color: var(--green-600);
   }
 
   &:hover {
     border-color: var(--green-600);
+  }
+
+  &__selector {
+    width: 19.5px;
+    height: 19.5px;
+    border-radius: 100%;
+    border: 1px solid var(--grey-500);
+    position: relative;
+
+    &--active {
+      border-color: var(--green-600);
+
+      &::before {
+        content: "";
+        position: absolute;
+        background-color: var(--green-600);
+        width: 12.5px;
+        height: 12.5px;
+        border-radius: 100%;
+        top: 2.5px;
+        left: 2.5px;
+      }
+    }
   }
 
   label {
