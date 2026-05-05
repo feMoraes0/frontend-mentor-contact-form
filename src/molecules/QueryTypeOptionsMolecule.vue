@@ -3,41 +3,46 @@
     <LabelAtom>Query Type</LabelAtom>
     <div class="query__options">
       <CheckboxAtom
-        id="query-input-general"
-        name="query-input-general"
-        label="General Enquiry"
-        :checked="isGeneralSelected"
-        @click="() => handleCheckbox('general')"
-      />
-      <CheckboxAtom
-        id="query-input-support"
-        name="query-input-support"
-        label="Support Request"
-        :checked="isSupportSelected"
-        @click="() => handleCheckbox('support')"
+        v-for="checkbox in checkboxes"
+        :key="checkbox.option"
+        :label="checkbox.label"
+        :checked="checkbox.isChecked"
+        @click="() => handleCheckbox(checkbox.option)"
       />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { ref } from "vue";
 import CheckboxAtom from "../atoms/CheckboxAtom.vue";
 import LabelAtom from "../atoms/LabelAtom.vue";
 
 type OptionsType = "general" | "support";
 
-const typeSelected = ref<OptionsType | null>(null);
-const isGeneralSelected = computed(() => typeSelected.value === "general");
-const isSupportSelected = computed(() => typeSelected.value === "support");
+const checkboxes = ref<
+  Array<{ label: string; option: OptionsType; isChecked: boolean }>
+>([
+  {
+    label: "General Enquiry",
+    option: "general",
+    isChecked: false,
+  },
+  {
+    label: "Support Request",
+    option: "support",
+    isChecked: false,
+  },
+]);
 
 const emit = defineEmits<{
   (e: "select", option: OptionsType): void;
 }>();
 
 function handleCheckbox(option: OptionsType) {
-  if (typeSelected.value === option) return;
-  typeSelected.value = option;
+  checkboxes.value.forEach((checkbox) => {
+    checkbox.isChecked = checkbox.option === option;
+  });
   emit("select", option);
 }
 </script>
@@ -64,13 +69,6 @@ $min-tablet-width: 768px;
       flex-direction: row;
       align-items: center;
       justify-items: stretch;
-    }
-
-    &__input {
-      flex: 1;
-      &:first-child {
-        margin-bottom: 0;
-      }
     }
   }
 }

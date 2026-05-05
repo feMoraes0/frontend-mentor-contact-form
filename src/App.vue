@@ -15,27 +15,7 @@
       </fieldset>
 
       <fieldset class="form__fieldset form__fieldset--query">
-        <label>Query Type </label>
-        <div class="form__fieldset--query__options">
-          <div class="form__fieldset--query__input">
-            <input
-              id="query-input-general"
-              name="query-input"
-              type="checkbox"
-              required
-            />
-            <label for="query-input-general">General Enquiry</label>
-          </div>
-          <div class="form__fieldset--query__input">
-            <input
-              id="query-input-support"
-              name="query-input"
-              type="checkbox"
-              required
-            />
-            <label for="query-input-support">Support Request</label>
-          </div>
-        </div>
+        <QueryTypeOptionsMolecule />
       </fieldset>
       <fieldset class="form__fieldset">
         <InputMolecule label="Message" input-name="message" type="textarea" />
@@ -52,6 +32,7 @@
 import TitleAtom from "./atoms/TitleAtom.vue";
 import ConsentMolecule from "./molecules/ConsentMolecule.vue";
 import InputMolecule from "./molecules/InputMolecule.vue";
+import QueryTypeOptionsMolecule from "./molecules/QueryTypeOptionsMolecule.vue";
 </script>
 
 <style scoped lang="scss">
