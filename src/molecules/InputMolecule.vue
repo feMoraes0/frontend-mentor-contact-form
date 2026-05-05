@@ -1,7 +1,8 @@
 <template>
   <div>
     <LabelAtom :for="`${inputName}-input`">{{ label }}</LabelAtom>
-    <TextInputAtom
+    <component
+      :is="getComponentByType"
       :id="`${inputName}-input`"
       :name="`${inputName}-input`"
       :hasError="hasError"
@@ -19,18 +20,24 @@ import { computed } from "vue";
 import ErrorMessageAtom from "../atoms/ErrorMessageAtom.vue";
 import LabelAtom from "../atoms/LabelAtom.vue";
 import TextInputAtom from "../atoms/TextInputAtom.vue";
+import TextareaAtom from "../atoms/TextareaAtom.vue";
 
 const props = defineProps<{
   errorMessage?: string | null;
   label: string;
   inputName: string;
-  type?: "text" | "email";
+  type?: "text" | "email" | "textarea";
 }>();
 const emit = defineEmits(["input"]);
 const onInput = (text: string) => emit("input", text);
 
 const hasError = computed(() => {
   return !!props.errorMessage?.length;
+});
+
+const getComponentByType = computed(() => {
+  if (props.type === "textarea") return TextareaAtom;
+  return TextInputAtom;
 });
 </script>
 

@@ -38,8 +38,7 @@
         </div>
       </fieldset>
       <fieldset class="form__fieldset">
-        <label for="message-input">Message </label>
-        <textarea id="message-input" name="message-input" required></textarea>
+        <InputMolecule label="Message" input-name="message" type="textarea" />
       </fieldset>
       <fieldset class="form__fieldset--consent">
         <input
