@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [vue()],
   test: {
     environment: "jsdom",
+    setupFiles: ["./tests/vitest-setup.ts"],
     globals: true,
     coverage: {
       exclude: ["*/**/main.ts", "*.config.*", "*/**/*.d.ts", "dist/*"],
