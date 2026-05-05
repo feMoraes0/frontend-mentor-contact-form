@@ -3,29 +3,17 @@
     <TitleAtom class="form-wrapper__title">Contact Us</TitleAtom>
     <form action="" class="form">
       <fieldset class="form__fieldset form__fieldset--name">
-        <div>
-          <label for="first-name-input">First Name </label>
-          <input
-            id="first-name-input"
-            name="first-name-input"
-            type="text"
-            required
-          />
-        </div>
-        <div>
-          <label for="last-name-input">Last Name </label>
-          <input
-            id="last-name-input"
-            name="last-name-input"
-            type="text"
-            required
-          />
-        </div>
+        <InputMolecule label="First Name" input-name="first-name" />
+        <InputMolecule label="Last Name" input-name="last-name" />
       </fieldset>
       <fieldset class="form__fieldset">
-        <label for="email-input">Email Address </label>
-        <input id="email-input" name="email-input" type="email" required />
+        <InputMolecule
+          label="Email Address"
+          input-name="email-input"
+          type="email"
+        />
       </fieldset>
+
       <fieldset class="form__fieldset form__fieldset--query">
         <label>Query Type </label>
         <div class="form__fieldset--query__options">
@@ -71,6 +59,7 @@
 
 <script setup lang="ts">
 import TitleAtom from "./atoms/TitleAtom.vue";
+import InputMolecule from "./molecules/InputMolecule.vue";
 </script>
 
 <style scoped lang="scss">
@@ -102,12 +91,6 @@ $min-desktop-width: 1440px;
 
       &--name {
         gap: 24px;
-
-        & div {
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-        }
       }
 
       &--query {
