@@ -41,15 +41,7 @@
         <InputMolecule label="Message" input-name="message" type="textarea" />
       </fieldset>
       <fieldset class="form__fieldset--consent">
-        <input
-          type="checkbox"
-          name="consent-input"
-          id="consent-input"
-          required
-        />
-        <label for="consent-input">
-          I consent to being contacted by the team
-        </label>
+        <ConsentMolecule />
       </fieldset>
       <button type="submit">Submit</button>
     </form>
@@ -58,6 +50,7 @@
 
 <script setup lang="ts">
 import TitleAtom from "./atoms/TitleAtom.vue";
+import ConsentMolecule from "./molecules/ConsentMolecule.vue";
 import InputMolecule from "./molecules/InputMolecule.vue";
 </script>
 
