@@ -1,6 +1,6 @@
 <template>
   <div>
-    <LabelAtom for="last-name-input">{{ label }}</LabelAtom>
+    <LabelAtom :for="`${inputName}-input`">{{ label }}</LabelAtom>
     <TextInputAtom
       :id="`${inputName}-input`"
       :name="`${inputName}-input`"
