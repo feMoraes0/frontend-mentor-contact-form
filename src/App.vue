@@ -1,6 +1,6 @@
 <template>
-  <main>
-    <h1>Contact Us</h1>
+  <main class="form-wrapper">
+    <TitleAtom class="form-wrapper__title">Contact Us</TitleAtom>
     <form action="" class="form">
       <fieldset class="form__fieldset form__fieldset--name">
         <div>
@@ -69,28 +69,21 @@
   </main>
 </template>
 
-<script lang="ts">
-export default {
-  name: "App",
-};
+<script setup lang="ts">
+import TitleAtom from "./atoms/TitleAtom.vue";
 </script>
 
 <style scoped lang="scss">
 $min-tablet-width: 768px;
 $min-desktop-width: 1440px;
 
-main {
+.form-wrapper {
   padding: 24px;
   background-color: var(--white);
   border-radius: 16px;
   margin: 40px 16px;
 
-  h1 {
-    color: var(--grey-900);
-    font-weight: bold;
-    font-size: 32px;
-    line-height: 100%;
-    letter-spacing: -1px;
+  &__title {
     margin-bottom: 32px;
   }
 
@@ -227,7 +220,7 @@ main {
 }
 
 @media (width >= $min-tablet-width) {
-  main {
+  .form-wrapper {
     width: 690px;
     align-self: center;
     justify-self: center;
@@ -261,7 +254,7 @@ main {
 }
 
 @media (width >= $min-desktop-width) {
-  main {
+  .form-wrapper {
     width: 736px;
   }
 }

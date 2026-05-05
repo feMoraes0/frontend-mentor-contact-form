@@ -9,6 +9,5 @@ h1 {
   font-weight: bold;
   letter-spacing: -1px;
   line-height: 100%;
-  margin-bottom: 32px;
 }
 </style>
