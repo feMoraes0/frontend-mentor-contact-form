@@ -6,37 +6,27 @@ describe("Given the Checkbox Atom component", () => {
   it("When only required props are passed, then should validate properties and labels", () => {
     render(CheckboxAtom, {
       props: {
-        id: "any_id",
-        name: "any_name",
         label: "any_label",
       },
     });
     const input = screen.getByRole("checkbox");
-    expect(input).toHaveProperty("id", "any_id");
-    expect(input).toHaveProperty("name", "any_name");
-    expect(input).toHaveProperty("checked", false);
-    expect(input).toHaveProperty("required", false);
-    expect(input).toHaveProperty("type", "checkbox");
+    expect(input).toBeDefined();
+    expect(input).not.toHaveClass("input-box__selector--active");
     const label = screen.getByText("any_label");
     expect(label).toBeDefined();
   });
 
-  it("When all props are passed, then should validate properties and labels", () => {
+  it("When check is true, then should validate properties and labels", () => {
     render(CheckboxAtom, {
       props: {
-        id: "any_id",
-        name: "any_name",
         label: "any_label",
-        required: true,
         checked: true,
       },
     });
+    const box = screen.getByRole("input-box");
+    expect(box).toHaveClass("input-box--active");
     const input = screen.getByRole("checkbox");
-    expect(input).toHaveProperty("id", "any_id");
-    expect(input).toHaveProperty("name", "any_name");
-    expect(input).toHaveProperty("checked", true);
-    expect(input).toHaveProperty("required", true);
-    expect(input).toHaveProperty("type", "checkbox");
+    expect(input).toHaveClass("input-box__selector--active");
     const label = screen.getByText("any_label");
     expect(label).toBeDefined();
   });
@@ -44,13 +34,10 @@ describe("Given the Checkbox Atom component", () => {
   it("When the box is clicked, then should emit click event", async () => {
     const { emitted } = render(CheckboxAtom, {
       props: {
-        id: "any_id",
-        name: "any_name",
         label: "any_label",
       },
     });
     const box = screen.getByRole("input-box");
-    const input = screen.getByRole("checkbox");
     expect(emitted().click).not.toBeDefined();
     await fireEvent.click(box);
     expect(emitted().click).toEqual([[]]);
@@ -59,8 +46,6 @@ describe("Given the Checkbox Atom component", () => {
   it("When the input is clicked, then should emit click event", async () => {
     const { emitted } = render(CheckboxAtom, {
       props: {
-        id: "any_id",
-        name: "any_name",
         label: "any_label",
       },
     });
@@ -73,8 +58,6 @@ describe("Given the Checkbox Atom component", () => {
   it("When the label is clicked, then should emit click event", async () => {
     const { emitted } = render(CheckboxAtom, {
       props: {
-        id: "any_id",
-        name: "any_name",
         label: "any_label",
       },
     });
