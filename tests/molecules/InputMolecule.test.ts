@@ -47,15 +47,19 @@ describe("Given the Input Molecule component", () => {
   });
 
   it("When an entry is typed, then should emit input event with the inputted string", async () => {
+    const updateValueSpy = vi.fn();
     const entry = "any_entry";
-    const { emitted } = render(InputMolecule, {
+    render(InputMolecule, {
       props: {
         label: "any_label",
         inputName: "any-input-name",
+        modelValue: "any",
+        "onUpdate:modelValue": updateValueSpy,
       },
     });
     const input = screen.getByRole("textbox") as HTMLInputElement;
     await fireEvent.update(input, entry);
-    expect(emitted().input).toEqual([[entry]]);
+    expect(updateValueSpy).toHaveBeenCalledTimes(1);
+    expect(updateValueSpy).toHaveBeenCalledWith(entry);
   });
 });
