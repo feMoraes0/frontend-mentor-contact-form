@@ -23,12 +23,13 @@
       <fieldset class="form__fieldset--consent">
         <ConsentMolecule />
       </fieldset>
-      <button type="submit">Submit</button>
+      <ButtonAtom type="submit">Submit</ButtonAtom>
     </form>
   </main>
 </template>
 
 <script setup lang="ts">
+import ButtonAtom from "./atoms/ButtonAtom.vue";
 import TitleAtom from "./atoms/TitleAtom.vue";
 import ConsentMolecule from "./molecules/ConsentMolecule.vue";
 import InputMolecule from "./molecules/InputMolecule.vue";

@@ -26,5 +26,6 @@ button {
   letter-spacing: 0;
   line-height: 150%;
   padding: 16px 0;
+  cursor: pointer;
 }
 </style>
