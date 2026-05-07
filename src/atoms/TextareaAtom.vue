@@ -3,7 +3,7 @@
     :class="{ error: hasError }"
     :id="id"
     :name="name"
-    :oninput="onInput"
+    v-model="input"
   />
 </template>
 
@@ -19,14 +19,7 @@ withDefaults(
   },
 );
 
-const emit = defineEmits<{
-  (e: "input", text: string): void;
-}>();
-
-function onInput(event: { target: { value: string } }) {
-  const { value } = event.target;
-  emit("input", value);
-}
+const input = defineModel<string>({ required: true });
 </script>
 
 <style scoped lang="scss">
