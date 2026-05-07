@@ -28,16 +28,19 @@ describe("Given the Textarea Atom component", () => {
   });
 
   it("When value is inputted, then should emit input event with input value", async () => {
+    const updateValueSpy = vi.fn();
     const entry = "any_value";
-    const { emitted } = render(TextareaAtom, {
+    render(TextareaAtom, {
       props: {
         id: "any_id",
         name: "any_name",
+        modelValue: "input",
+        "onUpdate:modelValue": updateValueSpy,
       },
     });
     const textarea = screen.getByRole("textbox") as HTMLTextAreaElement;
-    expect(emitted()).not.toHaveProperty("input");
     await fireEvent.update(textarea, entry);
-    expect(emitted()).toHaveProperty("input", [[entry]]);
+    expect(updateValueSpy).toHaveBeenCalledTimes(1);
+    expect(updateValueSpy).toHaveBeenCalledWith(entry);
   });
 });
