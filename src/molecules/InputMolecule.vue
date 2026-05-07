@@ -7,7 +7,7 @@
       :name="`${inputName}-input`"
       :hasError="hasError"
       :type="type"
-      @input="onInput"
+      v-model="model"
     />
     <ErrorMessageAtom v-if="hasError">
       {{ errorMessage }}
@@ -28,8 +28,8 @@ const props = defineProps<{
   inputName: string;
   type?: "text" | "email" | "textarea";
 }>();
-const emit = defineEmits(["input"]);
-const onInput = (text: string) => emit("input", text);
+
+const model = defineModel<string>({ required: true });
 
 const hasError = computed(() => {
   return !!props.errorMessage?.length;
