@@ -13,16 +13,13 @@
           type="email"
         />
       </fieldset>
-
-      <fieldset class="form__fieldset form__fieldset--query">
+      <fieldset class="form__fieldset">
         <QueryTypeOptionsMolecule />
       </fieldset>
       <fieldset class="form__fieldset">
         <InputMolecule label="Message" input-name="message" type="textarea" />
       </fieldset>
-      <fieldset class="form__fieldset--consent">
-        <ConsentMolecule />
-      </fieldset>
+      <ConsentMolecule class="form__fieldset--consent" />
       <ButtonAtom type="submit">Submit</ButtonAtom>
     </form>
   </main>
@@ -59,7 +56,6 @@ $min-desktop-width: 1440px;
     &__fieldset {
       display: flex;
       flex-direction: column;
-      gap: 8px;
       margin-bottom: 24px;
       border: none;
 
@@ -67,111 +63,10 @@ $min-desktop-width: 1440px;
         gap: 24px;
       }
 
-      &--query {
-        &__input {
-          padding: 12px 24px;
-          border-width: 1px;
-          border-style: solid;
-          border-color: var(--grey-500);
-          border-radius: 8px;
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          gap: 12px;
-          cursor: pointer;
-
-          &:first-child {
-            margin-bottom: 16px;
-          }
-
-          label {
-            font-size: 18px;
-            line-height: 150%;
-            letter-spacing: 0;
-            font-weight: 400;
-            cursor: inherit;
-          }
-        }
-      }
-
       &--consent {
-        border: none;
         margin-top: 16px;
         margin-bottom: 40px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: stretch;
-        gap: 16px;
-        padding-right: 36px;
-
-        input {
-          height: 24px;
-          width: 24px;
-        }
-
-        label {
-          font-size: 16px;
-          line-height: 150%;
-          letter-spacing: 0;
-          font-weight: 400;
-
-          &::after {
-            content: "*";
-            color: var(--green-600);
-          }
-        }
       }
-
-      label {
-        color: var(--grey-900);
-        font-size: 16px;
-        line-height: 150%;
-        letter-spacing: 0;
-        font-weight: 400;
-
-        &::after {
-          content: "*";
-          color: var(--green-600);
-        }
-      }
-
-      input,
-      textarea {
-        border-width: 1px;
-        border-style: solid;
-        border-color: var(--grey-500);
-        background-color: var(--white);
-        border-radius: 8px;
-        padding: 12px 24px;
-        font-size: 18px;
-        line-height: 150%;
-        letter-spacing: 0;
-        font-weight: 400;
-        color: var(--grey-900);
-        cursor: pointer;
-
-        &:hover {
-          border-color: var(--green-600);
-        }
-      }
-
-      textarea {
-        resize: none;
-        min-height: 295px;
-      }
-    }
-
-    button {
-      background-color: var(--green-600);
-      border: 1px solid var(--green-600);
-      padding: 16px 0;
-      border-radius: 8px;
-      color: var(--white);
-      font-weight: bold;
-      line-height: 150%;
-      font-size: 18px;
-      letter-spacing: 0;
     }
   }
 }
@@ -188,22 +83,6 @@ $min-desktop-width: 1440px;
       &__fieldset {
         &--name {
           flex-direction: row;
-        }
-
-        &--query {
-          &__options {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 16px;
-          }
-
-          &__input {
-            flex: 1;
-            &:first-child {
-              margin-bottom: 0;
-            }
-          }
         }
       }
     }
