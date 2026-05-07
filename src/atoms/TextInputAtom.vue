@@ -5,7 +5,7 @@
     :name="name"
     :type="type"
     :required="required"
-    :oninput="onInput"
+    v-model="input"
   />
 </template>
 
@@ -25,14 +25,7 @@ withDefaults(
   },
 );
 
-const emit = defineEmits<{
-  (e: "input", text: string): void;
-}>();
-
-function onInput(event: { target: { value: string } }) {
-  const { value } = event.target;
-  emit("input", value);
-}
+const input = defineModel({ required: true });
 </script>
 
 <style scoped lang="scss">
