@@ -32,12 +32,18 @@ describe("Given the Text Input Atom component", () => {
   });
 
   it("When a text is typed, then should emit onChange with typed input as parameter", async () => {
+    const updateValueSpy = vi.fn();
     const entry_value = "any_input_value";
-    const { emitted } = render(TextInputAtom, {
-      props: { name: "any_name" },
+    render(TextInputAtom, {
+      props: {
+        name: "any_name",
+        modelValue: "any",
+        "onUpdate:modelValue": updateValueSpy,
+      },
     });
     const input = screen.getByRole("textbox") as HTMLInputElement;
     await fireEvent.update(input, entry_value);
-    expect(emitted()).toHaveProperty("input", [[entry_value]]);
+    expect(updateValueSpy).toHaveBeenCalledTimes(1);
+    expect(updateValueSpy).toHaveBeenCalledWith(entry_value);
   });
 });
