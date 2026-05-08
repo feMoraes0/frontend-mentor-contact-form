@@ -19,14 +19,13 @@ describe("Given the Text Input Atom component", () => {
       props: {
         id: "any_id",
         name: "any_name",
-        type: "email",
         required: true,
         hasError: true,
       },
     });
     const input = screen.getByRole("textbox");
     expect(input).toHaveProperty("name", "any_name");
-    expect(input).toHaveProperty("type", "email");
+    expect(input).toHaveProperty("type", "text");
     expect(input).toHaveProperty("required", true);
     expect(input).toHaveProperty("id", "any_id");
   });
