@@ -3,7 +3,7 @@
     :class="{ error: hasError }"
     :id="id"
     :name="name"
-    :type="type"
+    type="text"
     :required="required"
     v-model="input"
   />
@@ -14,13 +14,11 @@ withDefaults(
   defineProps<{
     name: string;
     id?: string;
-    type?: "text" | "email";
     required?: boolean;
     hasError?: boolean;
   }>(),
   {
     required: false,
-    type: "text",
     hasError: false,
   },
 );
