@@ -20,9 +20,8 @@
         <InputMolecule
           label="Email Address"
           input-name="email-input"
-          type="email"
           v-model="inputsValue.email"
-          :error-message="hasError('email') ? 'This field is required' : ''"
+          :error-message="hasError('email') ? getEmailErrorMessage() : ''"
         />
       </fieldset>
       <fieldset class="form__fieldset">
@@ -79,6 +78,17 @@ const toggleConsentValue = () => {
   inputsValue.value.consent = !inputsValue.value.consent;
 };
 
+const getEmailErrorMessage = () => {
+  if (!inputsValue.value.email.trim()) {
+    return "This field is required";
+  }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(inputsValue.value.email)) {
+    return "Please enter a valid email address";
+  }
+  return null;
+};
+
 const hasError = computed(
   () =>
     (inputsValueRef: InputsValueRefType): boolean => {
@@ -90,7 +100,7 @@ const onSubmit = (event: { preventDefault: VoidFunction }) => {
   event.preventDefault();
   entriesWithErrors.value = [];
   for (const [key, value] of Object.entries(inputsValue.value)) {
-    if (!value || value === "") {
+    if (!value || (typeof value === "string" && value.trim() === "")) {
       entriesWithErrors.value.push(key as InputsValueRefType);
     }
   }
