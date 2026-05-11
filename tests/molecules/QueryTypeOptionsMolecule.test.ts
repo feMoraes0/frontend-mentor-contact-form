@@ -72,4 +72,10 @@ describe.skip("Given the Query Type Options molecule component", () => {
     expect(emitted().select).toEqual([["support"]]);
     expect(supportInput).toHaveProperty("checked", true);
   });
+
+  it("When error message is set, then should render error text", () => {
+    render(QueryTypeOptionsMolecule, { errorMessage: "any error message" });
+    const errorText = screen.getByText(/any error message/i);
+    expect(errorText).toBeDefined();
+  });
 });
