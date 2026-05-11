@@ -1,15 +1,20 @@
 <template>
-  <div class="query">
-    <LabelAtom>Query Type</LabelAtom>
-    <div class="query__options">
-      <CheckboxAtom
-        v-for="checkbox in checkboxes"
-        :key="checkbox.option"
-        :label="checkbox.label"
-        :checked="checkbox.isChecked"
-        @click="() => handleCheckbox(checkbox.option)"
-      />
+  <div class="wrapper">
+    <div class="query">
+      <LabelAtom>Query Type</LabelAtom>
+      <div class="query__options">
+        <CheckboxAtom
+          v-for="checkbox in checkboxes"
+          :key="checkbox.option"
+          :label="checkbox.label"
+          :checked="checkbox.isChecked"
+          @click="() => handleCheckbox(checkbox.option)"
+        />
+      </div>
     </div>
+    <ErrorMessageAtom v-if="errorMessage">
+      {{ errorMessage }}
+    </ErrorMessageAtom>
   </div>
 </template>
 
@@ -17,6 +22,7 @@
 import { ref } from "vue";
 import CheckboxAtom from "../atoms/CheckboxAtom.vue";
 import LabelAtom from "../atoms/LabelAtom.vue";
+import ErrorMessageAtom from "../atoms/ErrorMessageAtom.vue";
 
 type OptionsType = "general" | "support";
 
@@ -39,6 +45,8 @@ const emit = defineEmits<{
   (e: "select", option: OptionsType): void;
 }>();
 
+const props = defineProps<{ errorMessage: string | null }>();
+
 function handleCheckbox(option: OptionsType) {
   checkboxes.value.forEach((checkbox) => {
     checkbox.isChecked = checkbox.option === option;
@@ -49,6 +57,13 @@ function handleCheckbox(option: OptionsType) {
 
 <style scoped lang="scss">
 $min-tablet-width: 768px;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+}
 
 .query {
   align-items: stretch;
