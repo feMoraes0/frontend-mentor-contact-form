@@ -27,7 +27,9 @@
       <fieldset class="form__fieldset">
         <QueryTypeOptionsMolecule
           @select="setQueryTypeValue"
-          :has-error="hasError('queryType')"
+          :error-message="
+            hasError('queryType') ? 'Please select a query type' : null
+          "
         />
       </fieldset>
       <fieldset class="form__fieldset">
